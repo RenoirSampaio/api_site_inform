@@ -24,29 +24,36 @@ for value in select.stripped_strings:
 
 # Dicionário
 dict_ufs = {i : ufs[i] for i in range(0, len(ufs))}
-# print(dictufs[0])
+# print(dict_ufs)
 
 # response = requests.post(url, data = post_params)
 # soup = BeautifulSoup(response.text, 'html.parser')
 
 # Requisição POST com um elemento do dicionário
-url = "http://www.buscacep.correios.com.br/sistemas/buscacep/buscaFaixaCep.cfm"
-json_data = {value: dict_ufs[0]}
-r = requests.post(url, json = json_data)
-# print(r.text)
-
-# Array de informações
-r.encoding = "utf-8"
+payload = {"UF": "AC"}
+url = "http://www.buscacep.correios.com.br/sistemas/buscacep/resultadoBuscaFaixaCEP.cfm"
+# page = requests.get(url)
+# json_data = {"value": dict_ufs[0]}
+r = requests.post(url, data = payload)
+# r_dict = r.json()
+# print(r)
 s = BeautifulSoup(r.text, "html.parser")
 # print(s)
-records = s.find_all(class_ = "column-footer")
+
+# Array de informações
+# r.encoding = "utf-8"
+# s = BeautifulSoup(r.text, "html.parser")
+# # print(s)
+records = s.find_all(class_ = "tmptabela")
+# print(records)
 
 all_records = []
 count = 0
 for record in records:
+    # info = record.find(class_ = "node")
+    # print(record.find("td").text)
     count += 1
-    info = record.find(class_ = "node")
-    print(info)
+#     print(count)
     # "localidade"
     # "faixa de cep"
     # "id" = count
