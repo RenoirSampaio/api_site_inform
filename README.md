@@ -4,14 +4,14 @@ A small adventure to put skills to the test. In this task I collected data from 
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install.
 
 ```bash
 pip install requests
 pip install beautifulsoup4
 ```
 
-## Usage
+## Run
 
 ```bash
 python main.py

@@ -58,6 +58,8 @@ for index in range(len(ufs)):
     s = BeautifulSoup(r.content, "html.parser")
     # print(s)
 
+    # links = s.find(class_ = "column2").find_all("a")
+
     # Array de informações
     # r.encoding = "utf-8"
     # s = BeautifulSoup(r.text, "html.parser")
@@ -77,7 +79,7 @@ for index in range(len(ufs)):
                     'uf': ufs[index],
                     'localidade': re.search(r'>(.*?)<', phrase[0]).group(1),
                     'faixa de cep': re.search(r'>(.*?)<', phrase[1]).group(1),
-                    'situação': re.search(r'>(.*?)<', phrase[2]).group(1),
+                    'situacao': re.search(r'>(.*?)<', phrase[2]).group(1),
                     'tipo de faixa': re.search(r'>(.*?)<', phrase[3]).group(1),
                     'id': count
                 })
@@ -94,9 +96,14 @@ for index in range(len(ufs)):
     # a = re.search(r'>(.*?)<', phrase[0]).group(1)
     # find_between_r(str_prov, ">", "<")
 # print(all_records)
+# teste_string = str(links)
+# teste_string = teste_string.split(",")
+# href = re.search(r'"(.*?)"', teste_string[1]).group(1)
+# print(href)
+
 
 # Salvando arquivo JSON
 with open('records.json', 'w') as json_file:
-    json.dump(all_records, json_file)
+    json.dump(all_records, json_file, indent = 3, ensure_ascii = False)
 
 # print(records[0])
