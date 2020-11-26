@@ -19,7 +19,7 @@ python main.py
 
 ## Result
 
-file: records.json
+File: records.json
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

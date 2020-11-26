@@ -5,6 +5,10 @@ import json
 
 # GET request
 res = requests.get("http://www.buscacep.correios.com.br/sistemas/buscacep/buscaFaixaCep.cfm")
+if res.status_code == 200:
+    print('GET Success!')
+elif res.status_code == 404:
+    print('Page Not Found')
 res.encoding = "utf-8"
 soup = BeautifulSoup(res.text, "html.parser")
 
@@ -15,11 +19,18 @@ for value in select.stripped_strings:
     ufs.append(value)
 
 # POST request
+print(" ")
+print('Access UF Pages')
+print(" ")
 all_records = []
 for index in range(len(ufs)):
     payload = {"UF": ufs[index]}
     url = "http://www.buscacep.correios.com.br/sistemas/buscacep/resultadoBuscaFaixaCEP.cfm"
     r = requests.post(url, data = payload)
+    if r.status_code == 200:
+        print(f'POST Success! UF: {ufs[index]}')
+    elif r.status_code == 404:
+        print(f'Page Not Accessed. UF: {ufs[index]}')
     r.encoding = "utf-8"
     s = BeautifulSoup(r.content, "html.parser")
 
