@@ -17,5 +17,9 @@ pip install beautifulsoup4
 python main.py
 ```
 
+## Result
+
+file: records.json
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
