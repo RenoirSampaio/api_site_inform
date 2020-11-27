@@ -17,7 +17,7 @@ pip install beautifulsoup4
 python main.py
 ```
 
-## Result
+## Output
 
 File: records.json
 
