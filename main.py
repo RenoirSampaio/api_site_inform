@@ -3,6 +3,9 @@ from bs4 import BeautifulSoup
 import re
 import json
 
+def search_text(string):
+    return re.search(r'>(.*?)<', string).group(1)
+
 # GET request
 res_get = requests.get('http://www.buscacep.correios.com.br/sistemas/buscacep/buscaFaixaCep.cfm')
 if res_get.status_code == 200:
@@ -45,10 +48,10 @@ for index in range(len(ufs)):
                 phrase = phrase.split(',')
                 all_records.append({
                     'uf': ufs[index],
-                    'localidade': re.search(r'>(.*?)<', phrase[0]).group(1),
-                    'faixa de cep': re.search(r'>(.*?)<', phrase[1]).group(1),
-                    'situacao': re.search(r'>(.*?)<', phrase[2]).group(1),
-                    'tipo de faixa': re.search(r'>(.*?)<', phrase[3]).group(1),
+                    'localidade': search_text(phrase[0]),
+                    'faixa de cep': search_text(phrase[1]),
+                    'situacao': search_text(phrase[2]),
+                    'tipo de faixa': search_text(phrase[3]),
                     'id': count
                 })
             count += 1
